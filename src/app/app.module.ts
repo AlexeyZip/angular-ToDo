@@ -12,13 +12,10 @@ import { TaskPageComponent } from './task-page/task-page.component';
     AppComponent,
     MainLayoutComponent,
     HomePageComponent,
-    TaskPageComponent
+    TaskPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
