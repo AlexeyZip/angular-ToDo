@@ -7,17 +7,26 @@
   }
 }
 
-.custom-input {
-  width: 100%;
-  ::ng-deep {
-    .mat-form-field-wrapper {
-      padding-bottom: 0;
-      margin-bottom: 10px;
-    }
+.form-control {
+  display: flex;
+  flex-direction: column;
+  input {
+    padding: 10px;
   }
+  margin-bottom: 15px;
 }
 
 .form-btn {
   display: flex;
   justify-content: flex-end;
+}
+
+.validation {
+  color: red;
+}
+
+.invalid {
+  input {
+    border-color: red;
+  }
 }

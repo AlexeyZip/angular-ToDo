@@ -1,40 +1,62 @@
-<!-- <form class="card" [formGroup]="loginForm" (ngSubmit)="submit()">
+<form class="card" [formGroup]="loginForm" (ngSubmit)="submit()">
     <div class="card-title">
         <h2>Enter to admin panel</h2>
     </div>
-    <div class="form-control">
+    <div class="form-control" [ngClass]="{invalid: loginForm.get('email').touched && loginForm.get('email').invalid}">
         <label for="email">Email:</label>
-        <input id="email" type="email">
-        <div class="validation">
-            <small>error</small>
+        <input id="email" type="email" formControlName="email">
+        <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid" class="validation">
+            <small *ngIf="loginForm.get('email').errors.required">error</small>
+            <small *ngIf="loginForm.get('email').errors.email">email error</small>
         </div>
     </div>
-    <div class="form-control">
+    <div class="form-control"
+        [ngClass]="{invalid: loginForm.get('password').touched && loginForm.get('password').invalid}">
         <label for="password">Password:</label>
-        <input id="password" type="password">
-        <div class="validation">
-            <small>error</small>
+        <input id="password" type="password" formControlName="password">
+        <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" class="validation">
+            <small *ngIf="loginForm.get('password').errors.required">Enter password</small>
+            <small *ngIf="loginForm.get('password').errors.minlength">
+                Password must be contain {{loginForm.get('password').errors.minlength.requiredLength}} symbols, now he
+                contain {{loginForm.get('password').errors.minlength.actualLength}}
+            </small>
         </div>
     </div>
     <div class="form-btn">
-        <button mat-raised-button type="submit" color="primary" [disabled]="loginForm.invalid">Login</button>
+        <button mat-raised-button type="submit" color="primary">Login</button>
+        <!-- [disabled]="loginForm.invalid" -->
     </div>
 
-</form> -->
+</form>
 
-<form class="example-form">
-    <mat-form-field class="example-full-width">
+<!-- <form class="card">
+    <div class="card-title">
+        <h2>Enter to admin panel</h2>
+    </div>
+    <mat-form-field appearance="outline" class="custom-input">
         <mat-label>Email</mat-label>
-        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+        <input matInput [formControl]="email" formControlName="email" [errorStateMatcher]="matcher"
             placeholder="Ex. pat@example.com">
-        <mat-hint>Errors appear instantly!</mat-hint>
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
             Please enter a valid email address
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <mat-error *ngIf="email.hasError('required')">
             Email is <strong>required</strong>
         </mat-error>
     </mat-form-field>
-</form>
+
+    <mat-form-field appearance="outline" class="example-full-width" class="custom-input">
+        <mat-label>Password</mat-label>
+        <input matInput [formControl]="password" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+
+        <mat-error *ngIf="password.hasError('email') && !password.hasError('required')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+</form> -->
 
 <!-- Что бы работали кастомные стили нужно в главный модуль импортировать CustomMaterialModule -->
