@@ -1,3 +1,4 @@
+import { CustomMaterialModule } from './../material/custom-material.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import { EditPageComponent } from './edit-page/edit-page.component';
   ],
   imports: [
     CommonModule,
+    CustomMaterialModule,
     RouterModule.forChild([
       {
         path: '',

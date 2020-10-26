@@ -1,0 +1,23 @@
+.card {
+  max-width: 600px;
+  margin: 0 auto;
+  .card-title {
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 15px;
+  }
+}
+
+.custom-input {
+  width: 100%;
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.form-btn {
+  display: flex;
+  justify-content: flex-end;
+}
