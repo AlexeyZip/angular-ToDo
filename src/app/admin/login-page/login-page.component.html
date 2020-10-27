@@ -29,7 +29,7 @@
 
 </form> -->
 
-<form class="card" [formGroup]="loginForm">
+<form class="card" [formGroup]="loginForm" (ngSubmit)="submit()">
     <div class="card-title">
         <h2>Enter to admin panel</h2>
     </div>
@@ -55,12 +55,19 @@
                 Password is
                 <strong>required</strong>
             </mat-error>
+            <mat-error id="requiredPasswordError"
+                *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
+                <small *ngIf="loginForm.get('password').errors.minlength">
+                    Password must be contain {{loginForm.get('password').errors.minlength.requiredLength}} symbols, now
+                    he
+                    contain {{loginForm.get('password').errors.minlength.actualLength}}
+                </small>
+            </mat-error>
         </mat-form-field>
     </div>
 
     <div class="form-btn">
-        <button mat-raised-button type="submit" color="primary" (click)="submit()"
-            [disabled]="loginForm.invalid">Login</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="loginForm.invalid">Login</button>
     </div>
 </form>
 
