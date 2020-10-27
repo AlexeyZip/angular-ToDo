@@ -1,3 +1,6 @@
+import { User } from './../../shared/interfaces';
+import { Router } from '@angular/router';
+import { AuthService } from './../shared/components/services/auth-services';
 // import { User } from './../shared/components/interfaces';
 // import { Component, OnInit } from '@angular/core';
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -34,7 +37,7 @@
 //   }
 // }
 
-import { User } from './../shared/components/interfaces';
+// import { User } from '../../shared/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -45,7 +48,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
-  constructor() {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.createForm();
@@ -61,10 +64,17 @@ export class LoginPageComponent implements OnInit {
     });
   }
   submit() {
-    console.log(this.loginForm);
     if (this.loginForm.invalid) {
       return;
     }
+    const user: User = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+    };
+    this.auth.login(user).subscribe(() => {
+      this.loginForm.reset();
+      this.router.navigate(['/admin', 'dashboard']);
+    });
   }
   // submit() {
   //   console.log(this.loginForm);

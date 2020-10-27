@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.modules';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     CustomMaterialModule,
     MatInputModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
