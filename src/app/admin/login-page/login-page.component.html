@@ -33,6 +33,8 @@
     <div class="card-title">
         <h2>Enter to admin panel</h2>
     </div>
+
+    <div class="alert alert-danger" *ngIf="auth.error$ | async as alert"> {{alert}}</div>
     <div class="wrap">
         <mat-form-field appearance="outline" class="custom-input">
             <mat-label>Email</mat-label>

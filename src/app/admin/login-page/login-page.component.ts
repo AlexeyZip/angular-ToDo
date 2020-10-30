@@ -48,8 +48,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
-  submitted: false;
-  constructor(private auth: AuthService, private router: Router) {}
+  submitted: boolean;
+  constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.createForm();
@@ -75,11 +75,16 @@ export class LoginPageComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    this.auth.login(user).subscribe(() => {
-      this.loginForm.reset();
-      this.router.navigate(['/admin', 'dashboard']);
-      this.submitted = false;
-    });
+    this.auth.login(user).subscribe(
+      () => {
+        this.loginForm.reset();
+        this.router.navigate(['/admin', 'dashboard']);
+        this.submitted = false;
+      },
+      () => {
+        this.submitted = false;
+      }
+    );
   }
   // submit() {
   //   console.log(this.loginForm);
