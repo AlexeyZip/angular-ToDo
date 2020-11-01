@@ -35,6 +35,7 @@
     </div>
 
     <div class="alert alert-danger" *ngIf="auth.error$ | async as alert"> {{alert}}</div>
+    <div class="alert alert-danger" *ngIf="message"> {{message}}</div>
     <div class="wrap">
         <mat-form-field appearance="outline" class="custom-input">
             <mat-label>Email</mat-label>

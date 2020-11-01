@@ -1,5 +1,5 @@
 import { User } from './../../shared/interfaces';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from './../shared/components/services/auth-services';
 // import { User } from './../shared/components/interfaces';
 // import { Component, OnInit } from '@angular/core';
@@ -49,9 +49,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean;
-  constructor(public auth: AuthService, private router: Router) {}
+  message: string;
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['loginAgain']) {
+        this.message = 'Please, enter a date';
+      }
+    });
+
     this.createForm();
   }
 
