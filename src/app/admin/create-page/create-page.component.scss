@@ -1,0 +1,51 @@
+.card {
+  max-width: 600px;
+  margin: 0 auto;
+  .card-title {
+    border-bottom: 1px solid #ededed;
+    margin-bottom: 15px;
+  }
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  input {
+    padding: 10px;
+  }
+  margin-bottom: 15px;
+}
+
+.form-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.validation {
+  color: red;
+}
+
+.invalid {
+  input {
+    border-color: red;
+  }
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.custom-input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.alert {
+  background-color: red;
+  padding: 10px;
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+.task-content {
+  margin-bottom: 15px;
+}
