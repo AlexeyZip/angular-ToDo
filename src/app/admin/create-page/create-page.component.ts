@@ -1,3 +1,4 @@
+import { TasksService } from './../../shared/tasks.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/shared/interfaces';
@@ -10,7 +11,7 @@ import { Task } from 'src/app/shared/interfaces';
 export class CreatePageComponent implements OnInit {
   form: FormGroup;
 
-  constructor() {}
+  constructor(private tasksService: TasksService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -32,6 +33,8 @@ export class CreatePageComponent implements OnInit {
       date: new Date(),
     };
 
-    console.log(task);
+    this.tasksService.create(task).subscribe(() => {
+      this.form.reset();
+    });
   }
 }

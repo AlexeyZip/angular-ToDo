@@ -16,3 +16,7 @@ export interface Task {
   author: string;
   date: Date;
 }
+
+export interface FbCreateResponse {
+  name: string;
+}
