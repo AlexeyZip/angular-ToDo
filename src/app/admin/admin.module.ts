@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AuthService } from './shared/components/services/auth-services';
+import { AuthService } from './shared/components/services/auth.services';
 import { CustomMaterialModule } from './../material/custom-material.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
@@ -51,6 +51,6 @@ import { AuthGuard } from './shared/components/services/auth.guard';
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthGuard],
 })
 export class AdminModule {}

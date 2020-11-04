@@ -1,11 +1,11 @@
-import { environment } from './../../../../../environments/environment.prod';
+import { environment } from '../../../../../environments/environment.prod';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { User, FbAuthResponse } from './../../../../shared/interfaces';
+import { User, FbAuthResponse } from '../../../../shared/interfaces';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient) {}

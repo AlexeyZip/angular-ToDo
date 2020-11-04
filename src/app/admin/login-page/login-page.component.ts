@@ -1,6 +1,6 @@
 import { User } from './../../shared/interfaces';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AuthService } from './../shared/components/services/auth-services';
+import { AuthService } from '../shared/components/services/auth.services';
 // import { User } from './../shared/components/interfaces';
 // import { Component, OnInit } from '@angular/core';
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -60,6 +60,8 @@ export class LoginPageComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['loginAgain']) {
         this.message = 'Please, enter a date';
+      } else if (params['authFailed']) {
+        this.message = 'Session is failed. Login again';
       }
     });
 

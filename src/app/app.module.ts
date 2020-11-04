@@ -1,6 +1,6 @@
 import { SharedModule } from './shared/shared.modules';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,14 @@ import { TaskPageComponent } from './task-page/task-page.component';
 import { TodoComponent } from './shared/components/todo/todo.component';
 import { CustomMaterialModule } from './material/custom-material.module';
 import { MatInputModule } from '@angular/material/input';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/auth.interceptor';
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor,
+};
 
 @NgModule({
   declarations: [
@@ -28,7 +36,7 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
