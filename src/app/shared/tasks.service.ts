@@ -16,4 +16,16 @@ export class TasksService {
       })
     );
   }
+
+  getAll(): Observable<Task[]> {
+    return this.http.get(`${environment.fbDbUrl}/tasks.json`).pipe(
+      map((response: { [key: string]: any }) => {
+        return Object.keys(response).map((key) => ({
+          ...response[key],
+          id: key,
+          date: new Date(response[key].date),
+        }));
+      })
+    );
+  }
 }
