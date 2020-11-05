@@ -1,1 +1,32 @@
-<p>dashboard-page works!</p>
+<div *ngIf="tasks.length; else loader">
+    <div class="form-control">
+        <input type="text" placeholder="Find task">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Author</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Do</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks; let idx = index">
+                <td>{{idx + 1}}</td>
+                <td>{{task.author}}</td>
+                <td>{{task.title}}</td>
+                <td>{{task.date | date: 'medium' }}</td>
+                <td>
+                    <button class="" [routerLink]="['/admin', 'task', task.id, 'edit']">Open</button>
+                    <a (click)="remove(task.id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #loader>
+    <p>loading...</p>
+</ng-template>
