@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 export class DashboardPageComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   tSub: Subscription;
+  searchStr = '';
   constructor(private tasksService: TasksService) {}
 
   ngOnInit() {
