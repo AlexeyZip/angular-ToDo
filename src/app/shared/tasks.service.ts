@@ -1,5 +1,6 @@
+import { Task } from 'src/app/shared/interfaces';
 import { environment } from './../../environments/environment';
-import { FbCreateResponse, Task } from './interfaces';
+import { FbCreateResponse } from './interfaces';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -25,6 +26,14 @@ export class TasksService {
           id: key,
           date: new Date(response[key].date),
         }));
+      })
+    );
+  }
+
+  getById(id: string): Observable<Task> {
+    return this.http.get<Task>(`${environment.fbDbUrl}/tasks/${id}.json`).pipe(
+      map((task: Task) => {
+        return { ...task, id, date: new Date(task.date) };
       })
     );
   }

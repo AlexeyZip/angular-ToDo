@@ -1,1 +1,31 @@
-<p>edit-page works!</p>
+<div *ngIf="form; else loader">
+    <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="card-title">
+            <h1>Created task</h1>
+        </div>
+
+
+        <mat-form-field class="custom-input" appearance="outline" class="custom-input">
+            <mat-label for="title">Task name:</mat-label>
+            <input matInput type="text" id="title" formControlName="title" formControlName="title" placeholder="Name..."
+                autocomplete="title">
+            <mat-error id="requiredEmailError" *ngIf="form.controls['title'].hasError('required')">
+                Enter the name task
+            </mat-error>
+        </mat-form-field>
+
+        <div class="task-content">
+            <h1>Task content</h1>
+            <quill-editor formControlName="text"></quill-editor>
+        </div>
+
+
+        <div class="form-btn">
+            <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Create</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #loader>
+    <p>Loading...</p>
+</ng-template>
