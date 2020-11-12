@@ -2,6 +2,7 @@ import { Task } from './../../shared/interfaces';
 import { TasksService } from './../../shared/tasks.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/components/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -13,7 +14,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   tSub: Subscription;
   dSub: Subscription;
   searchStr = '';
-  constructor(private tasksService: TasksService) {}
+  constructor(
+    private tasksService: TasksService,
+    private alert: AlertService
+  ) {}
 
   ngOnInit() {
     this.tSub = this.tasksService.getAll().subscribe((tasks) => {
@@ -24,6 +28,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   remove(id: string) {
     this.dSub = this.tasksService.remove(id).subscribe(() => {
       this.tasks = this.tasks.filter((task) => task.id !== id);
+      this.alert.danger('Post was be remove');
     });
   }
 

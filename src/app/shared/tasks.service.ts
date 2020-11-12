@@ -41,4 +41,11 @@ export class TasksService {
   remove(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.fbDbUrl}/tasks/${id}.json`);
   }
+
+  update(task: Task): Observable<Task> {
+    return this.http.patch<Task>(
+      `${environment.fbDbUrl}/task/${task.id}.json`,
+      task
+    );
+  }
 }
