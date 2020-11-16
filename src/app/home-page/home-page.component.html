@@ -1,6 +1,7 @@
-<div class="todos">
-    <app-todo></app-todo>
-    <app-todo></app-todo>
-    <app-todo></app-todo>
-    <app-todo></app-todo>
+<div class="todos" *ngIf="tasks$ | async as tasks; else loading">
+    <app-todo *ngFor="let task of tasks" [task]="task"></app-todo>
 </div>
+
+<ng-template #loading>
+    <p>Loading tasks</p>
+</ng-template>
